@@ -33,11 +33,7 @@
   dumps_format = config.get('ckan.dumps_format', '')
 ?>
         <p>
-            You can also access this registry using the 
-            ${h.link_to(_('API'), h.url_for(controller='api', action='get_api', id=None, ver=1))}
-            (see ${h.link_to(_('API Docs'), 'http://docs.ckan.org/en/latest/api.html')})<py:if test="dumps_url">
-                or download a <a href="${dumps_url}">full ${dumps_format} 
-                dump</a></py:if>.
+            You can also access this registry using the <a href="http://www.healthdata.gov/developer/api">API</a>.
         </p>
     </li>
  
