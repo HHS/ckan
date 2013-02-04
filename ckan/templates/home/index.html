@@ -1,6 +1,6 @@
 {% extends "page.html" %}
 
-{% block subtitle %}{{ _("Welcome") }}{% endblock %}
+{% block subtitle %}{% endblock %}
 
 {% block maintag %}{% endblock %}
 
@@ -27,29 +27,14 @@
           {{ h.render_markdown(g.site_intro_text) }}
           {% else %}
             {% block home_primary_content %}
-              <h1 class="page-heading">{% block home_primary_heading %}{{ _("Welcome to CKAN") }}{% endblock %}</h1>
-              <p>
-              {% block home_primary_text %}
-                {% trans %}This is a nice introductory paragraph about CKAN or the site
-                in general. We don't have any copy to go here yet but soon we will
-                {% endtrans %}
-              {% endblock %}
-              </p>
+              <h1 class="page-heading">Welcome to the HealthData.gov Catalog Hub</h1>
+              <p>Throughout the U.S. Department of Health &amp; Human Services, agencies and programs are making substantial efforts to provide data and tools to use HHS information in new ways.</p>
+              <p>This website provides advanced access to the HHS data catalog, including an API that provides software developers with programmatic access to the contents of the data catalog [<a href="http://www.healthdata.gov/catalog-api">documentation</a>].
             {% endblock %}
           {% endif %}
         </header>
       {% endblock %}
 
-      {% block home_image %}
-        <section class="featured media-overlay">
-          <h2 class="media-heading">{% block home_image_caption %}{{ _("This is a featured section") }}{% endblock %}</h2>
-          {% block home_image_content %}
-            <a class="media-image" href="#">
-              <img src="http://placehold.it/420x220" alt="Placeholder" width="420" height="220" />
-            </a>
-          {% endblock %}
-        </section>
-      {% endblock %}
     </div>
   </div>
   <div class="hero-secondary">
@@ -58,9 +43,9 @@
         {% block home_search %}
           <div class="module module-shallow module-narrow module-dark info">
             <form class="dataset-search module-content clearfix" method="get" action="{% url_for controller='package', action='search' %}">
-              <h3 class="heading">{{ _("Search Your Data") }}</h3>
+              <h3 class="heading">Search Datasets</h3>
               <span class="control-group search-giant">
-                <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
+                <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="e.g. child health" />
                 <button type="submit" value="{{ _('Search') }}">Submit</button>
               </span>
             </form>

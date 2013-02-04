@@ -87,12 +87,14 @@
             </div>
           </div>
         {% else %}
+          {# note: disabled because we do not allow anyone to log in or register
           <nav class="section account not-authed">
             <ul class="unstyled">
               <li>{% link_for _('Log in'), controller='user', action='login' %}</li>
               <li>{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
             </ul>
           </nav>
+          #}
         {% endif %}
       {% endblock %}
 

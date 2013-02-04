@@ -9,14 +9,9 @@
 {% block primary %}
   <article class="module">
     <div class="module-content">
-      {% block about %}
-        {% if g.site_about %}
-          {{ h.markdown_extract(g.site_about) }}
-        {% else %}
-          <h1 class="page-heading">{{ _('About') }}</h1>
-          {% snippet 'home/snippets/about_text.html' %}
-        {% endif %}
-      {% endblock %}
+        <h1 class="page-heading">{{ _('About') }}</h1>
+
+        <p>Please see the <a href="http://www.healthdata.gov/unleashing-power-data-and-innovation-improve-health">About page on HealthData.gov</a>.</p>
     </div>
   </article>
 {% endblock %}
