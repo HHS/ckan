@@ -27,10 +27,10 @@
             {{ h.build_nav_main(
               ('add dataset', _('Add Dataset'), 'package_create'),
               ('search', _('Datasets')),
-              ('organizations_index', _('Organizations')),
               ('group_index', _('Groups')),
               ('about', _('About'))
             ) }}
+            {# don't need this since we're not using orgs  ('organizations_index', _('Organizations')), #}
           </ul>
         </nav>
       {% endblock %}
