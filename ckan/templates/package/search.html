@@ -33,7 +33,7 @@
           {%- elif request.params and c.page.item_count == 0 -%}
             {{ _('Sorry no datasets found for "{query}"').format(query=c.q) }}
           {%- else -%}
-            {{ _('All datasets') }}
+            {{ _('All {count} datasets').format(count=c.page.item_count) }}
           {%- endif -%}
         </strong>
         <div class="filter-list">
