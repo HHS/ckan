@@ -127,7 +127,7 @@ def _unified_resource_format(format_):
     if format_clean in formats:
         format_new = formats[format_clean]
     else:
-        format_new = format_.lower()
+        format_new = format_#.lower()
     return format_new
 
 def resource_dictize(res, context):
