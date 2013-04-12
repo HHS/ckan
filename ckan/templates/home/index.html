@@ -67,7 +67,7 @@
             {% endblock %}
             {% block home_tags %}
               <div class="tags">
-                <h3>{{ _('Popular Tags') }}</h3>
+                {# <h3>{{ _('Popular Tags') }}</h3> #}
                 {% set tags = h.get_facet_items_dict('tags', limit=3) %}
                 {% for tag in tags %}
                   <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
@@ -82,6 +82,7 @@
 
 {% block secondary_content %}
   <div class="row group-listing">
+    <p style="margin: 0 0 1.5em 1.75em">Here are some of the datasets in the catalog:</p>
     {% for group in c.group_package_stuff %}
       <div class="span6">
         <div class="box">
