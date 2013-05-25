@@ -7807,6 +7807,7 @@ textarea {
   min-height: 30px;
   color: #ffffff;
   background: #003647 url("../../../base/images/bg.png");
+  display: none;
 }
 .account-masthead:before,
 .account-masthead:after {
@@ -7890,7 +7891,10 @@ textarea {
   *zoom: 1;
   min-height: 55px;
   color: #ffffff;
-  background: #005d7a url("../../../base/images/bg.png");
+  /*background: #005d7a url("../../../base/images/bg.png");*/
+  background-color: #002c47;
+  background-image: url(http://www.healthdata.gov/sites/all/themes/hdtheme/footer.jpg);
+  background-repeat: repeat-x;
 }
 .masthead:before,
 .masthead:after {
@@ -7907,6 +7911,9 @@ textarea {
 .masthead a {
   color: #ffffff;
 }
+	.masthead a img {
+		margin-top: 12px;
+	}
 .masthead hgroup h1,
 .masthead hgroup h2 {
   float: left;
@@ -7966,8 +7973,18 @@ textarea {
   *zoom: 1;
   min-height: 55px;
   color: #ffffff;
-  background: #005d7a url("../../../base/images/bg.png");
+  /*background: #005d7a url("../../../base/images/bg.png");*/
+  background-color: #002c47;
+  background-image: -moz-linear-gradient(top, #002c47, #00536b);
+  background-image: -ms-linear-gradient(top, #002c47, #00536b);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#002c47), to(#00536b));
+  background-image: -webkit-linear-gradient(top, #002c47, #00536b);
+  background-image: -o-linear-gradient(top, #002c47, #00536b);
+  background-image: linear-gradient(top, #002c47, #00536b);
   padding: 20px 0;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  line-height: 18px;
 }
 .site-footer:before,
 .site-footer:after {

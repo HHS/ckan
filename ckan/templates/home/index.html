@@ -58,9 +58,9 @@
           <div class="module module-shallow module-narrow module-dark info box">
             {% block home_search %}
               <form class="dataset-search module-content clearfix" method="get" action="{% url_for controller='package', action='search' %}">
-                <h3 class="heading">{{ _("Search Your Data") }}</h3>
+                <h3 class="heading">Search Datasets</h3>
                 <span class="control-group search-giant">
-                  <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
+                  <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="e.g. child health" />
                   <button type="submit" value="{{ _('Search') }}">Submit</button>
                 </span>
               </form>
