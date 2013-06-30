@@ -4,42 +4,49 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 
 <${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}>
 a dcat:Dataset;
-     dct:description "${c.pkg_dict['notes']}";
-     dct:identifier "${c.pkg_dict['name']}";
-     dct:relation  [
-         rdf:value "";
-         :label "change_note" ],
-             [
-         rdf:value "";
-         :label "definition_note" ],
-             [
-         rdf:value "";
-         :label "editorial_note" ],
-             [
-         rdf:value "";
-         :label "example_note" ],
-             [
-         rdf:value "";
-         :label "history_note" ],
-             [
-         rdf:value "";
-         :label "scope_note" ],
-             [
-         rdf:value "";
-         :label "skos_note" ],
-             [
-         rdf:value "";
-         :label "temporal_granularity" ],
-             [
-         rdf:value "";
-         :label "type_of_dataset" ],
-             [
-         rdf:value "";
-         :label "update_frequency" ];
-     dct:title "${c.pkg_dict['title']}";
-     :label "${c.pkg_dict['name']}";
      = <urn:uuid:${c.pkg_dict['id']}>;
-     foaf:homepage <http://127.0.0.1:5000/dataset/testt> .
+	
+     :label "${c.pkg_dict['name']}";
+     dct:identifier "${c.pkg_dict['name']}";
+     dct:title "${c.pkg_dict['title']}";
+     dc:title "${c.pkg_dict['title']}";
+     
+     dc:source "${c.pkg_dict['url']}";
+     
+     dct:description "${c.pkg_dict['notes']}";
+     dc:description "${c.pkg_dict['notes']}";
+     
+     {% for tag_dict in c.pkg_dict['tags'] %}
+     dcat:keyword "${ tag_dict["name"] }" ;
+     dct:subject "${ tag_dict["name"] }" ;
+     {% endfor %}
+     
+     {% for extra_dict in c.pkg_dict.get('extras',None) %}
+        dct:relation [ :label "${extra_dict.get('key','')}" ; rdf:value "${extra_dict.get('value','')}" ] ;
+
+        {% if extra_dict.get('key','')=='author_id' %}dct:creator <${extra_dict.get('value','')}>;{% endif %}
+        {% if extra_dict.get('key','')=='author_id' %}dc:publisher <${extra_dict.get('value','')}>;{% endif %}
+
+        {% if extra_dict.get('key','')=='Date Updated' %}dct:modified "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Date Updated' %}dc:date "${extra_dict.get('value','')}";{% endif %}
+
+        {% if extra_dict.get('key','')=='Subject Area 1' %}dc:subject "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Subject Area 2' %}dc:subject "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Subject Area 3' %}dc:subject "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Subject Area 1' %}dcat:theme "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Subject Area 2' %}dcat:theme "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Subject Area 3' %}dcat:theme "${extra_dict.get('value','')}";{% endif %}
+
+        {% if extra_dict.get('key','')=='Period of Coverage' %}dcat:granularity "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Unit of Analysis' %}dcat:granularity "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Geographic Scope' %}dcat:granularity "${extra_dict.get('value','')}";{% endif %}
+        {% if extra_dict.get('key','')=='Geographic Granularity' %}dcat:granularity "${extra_dict.get('value','')}";{% endif %}
+
+        {% if extra_dict.get('key','')=='Data Dictionary' %}dcat:dataDictionary "${extra_dict.get('value','')}";{% endif %}
+     {% endfor %}
+
+     foaf:homepage <${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}> .

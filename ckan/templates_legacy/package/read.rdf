@@ -7,18 +7,28 @@
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:dcat="http://www.w3.org/ns/dcat#"
   xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
 >
   <dcat:Dataset rdf:about="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}">
     <owl:sameAs rdf:resource="urn:uuid:${c.pkg_dict['id']}"/>
-    <dct:description>${c.pkg_dict['notes']}</dct:description>
-    <py:for each="tag_dict in c.pkg_dict['tags']">
-        <dcat:keyword>${ tag_dict["name"] }</dcat:keyword>
-    </py:for>
-    <foaf:homepage rdf:resource="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}"/>
-    <rdfs:label>${c.pkg_dict['name']}</rdfs:label>
 
+    <rdfs:label>${c.pkg_dict['name']}</rdfs:label>
     <dct:identifier>${c.pkg_dict['name']}</dct:identifier>
     <dct:title>${c.pkg_dict['title']}</dct:title>
+    <dc:title>${c.pkg_dict['title']}</dc:title>
+
+    <dc:source>${c.pkg_dict['url']}</dc:source>
+
+    <dct:description>${c.pkg_dict['notes']}</dct:description>
+    <dc:description>${c.pkg_dict['notes']}</dc:description>
+
+    <py:for each="tag_dict in c.pkg_dict['tags']">
+        <dcat:keyword>${ tag_dict["name"] }</dcat:keyword>
+        <dct:subject>${ tag_dict["name"] }</dct:subject>
+    </py:for>
+
+    <foaf:homepage rdf:resource="${ h.url_for(controller='package',action='read',id=c.pkg_dict['name'], qualified=True)}"/>
+
     <py:for each="rsc_dict in c.pkg_dict['resources']">
         <dcat:distribution>
             <dcat:Distribution>
@@ -54,6 +64,28 @@
             <rdf:value>${extra_dict.get('value','')}</rdf:value>
           </rdf:Description>
         </dct:relation>
+
+        <dct:creator py:if="extra_dict.get('key','')=='author_id'" rdf:resource="${extra_dict.get('value','')}"/>
+        <dc:publisher py:if="extra_dict.get('key','')=='author_id'" rdf:resource="${extra_dict.get('value','')}"/>
+
+        <dct:modified py:if="extra_dict.get('key','')=='Date Updated'">${extra_dict.get('value','')}</dct:modified>
+        <dc:date py:if="extra_dict.get('key','')=='Date Updated'">${extra_dict.get('value','')}</dc:date>
+
+        <dc:subject py:if="extra_dict.get('key','')=='Subject Area 1'">${extra_dict.get('value','')}</dc:subject>
+        <dc:subject py:if="extra_dict.get('key','')=='Subject Area 2'">${extra_dict.get('value','')}</dc:subject>
+        <dc:subject py:if="extra_dict.get('key','')=='Subject Area 3'">${extra_dict.get('value','')}</dc:subject>
+        <dcat:theme py:if="extra_dict.get('key','')=='Subject Area 1'">${extra_dict.get('value','')}</dcat:theme>
+        <dcat:theme py:if="extra_dict.get('key','')=='Subject Area 2'">${extra_dict.get('value','')}</dcat:theme>
+        <dcat:theme py:if="extra_dict.get('key','')=='Subject Area 3'">${extra_dict.get('value','')}</dcat:theme>
+
+        <dcat:granularity py:if="extra_dict.get('key','')=='Period of Coverage'">${extra_dict.get('value','')}</dcat:granularity>
+        <dcat:granularity py:if="extra_dict.get('key','')=='Unit of Analysis'">${extra_dict.get('value','')}</dcat:granularity>
+        <dcat:granularity py:if="extra_dict.get('key','')=='Geographic Scope'">${extra_dict.get('value','')}</dcat:granularity>
+        <dcat:granularity py:if="extra_dict.get('key','')=='Geographic Granularity'">${extra_dict.get('value','')}</dcat:granularity>
+
+        <dcat:dataDictionary py:if="extra_dict.get('key','')=='Data Dictionary'">${extra_dict.get('value','')}</dcat:dataDictionary>
+	
+
     </py:for>
   </dcat:Dataset>
 </rdf:RDF>

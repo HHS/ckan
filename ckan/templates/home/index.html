@@ -58,16 +58,16 @@
           <div class="module module-shallow module-narrow module-dark info box">
             {% block home_search %}
               <form class="dataset-search module-content clearfix" method="get" action="{% url_for controller='package', action='search' %}">
-                <h3 class="heading">{{ _("Search Your Data") }}</h3>
+                <h3 class="heading">Search {{c.package_count}} Datasets</h3>
                 <span class="control-group search-giant">
-                  <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="{{ _('eg. Gold Prices') }}" />
+                  <input type="text" class="search" name="q" value="{{ c.q }}" autocomplete="off" placeholder="e.g. child health" />
                   <button type="submit" value="{{ _('Search') }}">Submit</button>
                 </span>
               </form>
             {% endblock %}
             {% block home_tags %}
               <div class="tags">
-                <h3>{{ _('Popular Tags') }}</h3>
+                {# <h3>{{ _('Popular Tags') }}</h3> #}
                 {% set tags = h.get_facet_items_dict('tags', limit=3) %}
                 {% for tag in tags %}
                   <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
@@ -82,6 +82,7 @@
 
 {% block secondary_content %}
   <div class="row group-listing">
+    <p style="margin: 0 0 1.5em 1.75em">Here are some of the datasets in the catalog:</p>
     {% for group in c.group_package_stuff %}
       <div class="span6">
         <div class="box">
